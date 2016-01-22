@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Zipline: Build a Tic Tac Toe Game</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.min.js"></script>
+	<script src="app.js"></script>
+</head>
+<body>
+	<div class="section-outer" ng-app="TicTacToe" ng-controller="TicTacToeController">
+		<script type="text/ng-template" id="modal.html">
+			<div class="modal-header">
+				<h4 class="modal-title">Zipline: Build a Tic Tac Toe Game</h4>
+			</div>
+			<div class="modal-body">
+				<p>{{ marks[0] }} or {{ marks[1] }}</p>
+			</div>
+			<div class="modal-footer">
+				<button ng-repeat="mark in marks track by $index" ng-click="select($index)" type="button" class="btn btn-default">{{ mark }}</button>
+			</div>
+		</script>
+		<div class="section-inner">
+			<table id="tic-tac-toe">
+				<tr ng-repeat="row in [0,1,2]">
+					<td ng-repeat="col in [0,1,2]" ng-click="game.clickOn(row * 3 + col)" ng-class="{ 'red': game.reds[row * 3 + col]}">
+						{{ game.marks[row * 3 + col] }}
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>
