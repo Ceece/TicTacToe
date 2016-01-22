@@ -1,6 +1,6 @@
 var app = angular.module('TicTacToe', ['ui.bootstrap']);
 
-app.controller('TicTacToeController', ['$scope', '_', '$uibModal', function($scope, _, $uibModal){
+app.controller('TicTacToeController', ['$scope', '_', '$uibModal', '$timeout', function($scope, _, $uibModal, $timeout){
 	$scope.marks = ['O', 'X'];
 	$scope.game = {
 		playerMark: $scope.marks[0],
@@ -11,11 +11,14 @@ app.controller('TicTacToeController', ['$scope', '_', '$uibModal', function($sco
 		reds: [true,false,false,true,false,false,true,false,false],
 		__done: true,
 		startGame: function() {
+			var self = this;
 			this.__done = false;
 			this.playerTurn = this.playerFirst;
 			this.marks = [null,null,null,null,null,null,null,null,null];
-			this.reds = [false,false,false,false,false,false,false,false,false]
-			this.computerTurn();
+			this.reds = [false,false,false,false,false,false,false,false,false];
+			$timeout(function(){
+				self.computerTurn();
+			}, 500);
 		},
 		isPlayerTurn: function(){
 			return this.playerTurn;

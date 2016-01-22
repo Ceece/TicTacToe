@@ -25,9 +25,9 @@
 		</script>
 		<div class="section-inner">
 			<table id="tic-tac-toe">
-				<tr ng-repeat="row in [0,1,2]">
-					<td ng-repeat="col in [0,1,2]" ng-click="game.clickOn(row * 3 + col)" ng-class="{ 'red': game.reds[row * 3 + col]}">
-						{{ game.marks[row * 3 + col] }}
+				<tr ng-repeat="row in game.marks track by $index" ng-if="$index % 3 == 0">
+					<td ng-repeat="mark in game.marks track by $index" ng-if="$index >= $parent.$index && $index <= $parent.$index + 2" ng-click="game.clickOn($index)" ng-class="{ 'red': game.reds[$index]}">
+						{{ mark }}
 					</td>
 				</tr>
 			</table>
